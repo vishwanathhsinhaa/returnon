@@ -1,0 +1,5 @@
+<%= form_tag properties_path, :method => :get,  class: "navbar-form navbar-right", role: "search" do %>
+		<%= text_field_tag :search, params[:search], :placeholder => "Search Property...."  %>
+		<%= submit_tag "Q", id: "search_submit", class: "header_search_icon" %>
+<% end %>
+

@@ -1,0 +1,27 @@
+<%= link_to 'Add Property', new_property_path %>
+<div class="media">
+  <div class="media-body">
+    <table class="table table-hover">      
+      <tbody>
+        <% @properties.each do |property| %>
+          <tr>
+            <td><%= image_tag property.image.url(:thumb) %></td>
+            <td><%= property.title %></td>            
+            <td><%= property.city.ct_type %></td>
+            <td><%= property.p_date %></td>            
+            <td><%= property.area %></td>
+            <td><%= property.price %></td>
+            <td><%= property.category.c_type %></td>            
+            <td><%= property.rent_per_month %></td>
+  
+            <td><%= link_to 'View', property %></td>
+            <%#<td><%= link_to 'Edit', edit_property_path(property) </td>
+            <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } </td>%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

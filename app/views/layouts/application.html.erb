@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Return</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<header>
+			<%= render 'layouts/header_navigation' %>
+		</header>
+		<main>	
+			<%#<%= render 'layouts/banner_ad' %>
+			<%= yield %>
+			
+		</main>
+		<footer>
+			<%= render 'layouts/footer_navigation' %>
+		</footer>
+
+	</body>
+</html>

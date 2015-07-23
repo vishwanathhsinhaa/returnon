@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ROIP</title>
+    <%= stylesheet_link_tag    "homestead/application", media: "all" %>
+    <%= stylesheet_link_tag    "homestead/application", media: "all" %>
+    <%= javascript_include_tag "homestead/application" %>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        
+         <ul class="title-area">
+           <%# <li class="name"> %>
+           <%#  <%= link_to image_tag("logo.png", :class => "logo"), root_path %>
+                <%#&nbsp;<%= link_to "ROIP", root_path %>
+            <%# </li> %>          
+        </ul>
+
+        <ul class="nav navbar-nav">
+          <li><%= render 'navigate/form_search' %></li>
+          <li><%= link_to "Property", properties_path %></li>
+          <li><%= link_to "Location", locations_path %></li>
+          <li><%= link_to "State", states_path %></li>
+          <li><%= link_to "City", cities_path %></li>
+          <li><%= link_to "Category", categories_path %></li>
+          <li><%= link_to "Type", types_path %></li>
+          <li><%= link_to "Ownership", ownerships_path %></li>
+          <li><%= link_to "Contact", contacts_path %></li>
+        </ul>
+      </div>
+
+      <%#<%= render 'layouts/search_bar' %>
+    </nav>
+
+
+    
+  </body>
+</html>

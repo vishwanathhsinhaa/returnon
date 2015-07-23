@@ -1,0 +1,167 @@
+<%= form_for @property, html: { multipart: true } do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% @property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label "Property Title", class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Property Type", class: 'control-label' %>
+    <div class="controls">
+      <%= f.select(:p_type, options_for_select([['Select Any', 'Select Any'], ['Commercial', 'Commercial'], ['Residential', 'Residential'], ['Industrial','Industrial'],['Agricultural', 'Agricultural']])) %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label "Category", class: 'control-label' %><br>
+    <div class="controls">
+      <%= collection_select( :property, :category_id, Category.all, :id, :c_type, {}, { :multiple => false }) %>
+    </div>
+  </div>
+
+  
+  <div class="control-group">
+    <%= f.label "Property Ownership", class: 'control-label' %><br>
+    <div class="controls">
+      <%= collection_select( :property, :ownership_id, Ownership.all, :id, :o_type, {}, { :multiple => false }) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Type", class: 'control-label' %><br>
+    <div class="controls">
+      <%= collection_select( :property, :type_id, Type.all, :id, :u_type, {}, { :multiple => false }) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Posting date", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.date_select :p_date %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Property Description", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_area :desc %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Property Address", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :address %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "State", class: 'control-label' %><br>
+    <div class="controls">
+      <%= collection_select( :property, :state_id, State.all, :id, :s_type, {}, { :multiple => false }) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "City", class: 'control-label' %><br>
+    <div class="controls">
+      <%= collection_select( :property, :city_id, City.all, :id, :ct_type, {}, { :multiple => false }) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Pin Code", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :p_code %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label "Area", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :area %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Property Price", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :price %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Current Tenant", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :tenant_name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Lease Start date", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.date_select :lease_commence_date %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label "Lease Expiry date", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.date_select :lease_expiry_date %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Lease Tenure", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :lease_tenure %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Rent Per Month", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :rent_per_month %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Return of Investment", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :roi %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Lockin Period", class: 'control-label' %><br>
+    <div class="controls">
+      <%= f.text_field :lockin_period %>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
