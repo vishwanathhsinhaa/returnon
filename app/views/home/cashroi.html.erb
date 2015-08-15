@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<titel></titel>		
+	</head>
+	<body>
+		<h1>CashOnCash RoI Calculator</h1> 
+	   
+	    <p><b>Property Cost</b>: <input type="text" id="inCost" /></p>
+	    <p><b>Rent</b>: <input type="text" id="inRent" /></p>
+	    <p><b>Mantainance</b>: <input type="text" id="inMnt" /></p>
+	    <p><b>Tax on Property</b>: <input type="text" id="inTax" /></p>
+	    <p><b>Insurance on Property</b>: <input type="text" id="inIns" /></p>
+	    <p><b>Annual Inflation</b>: <input type="text" id="inInfl" /></p>
+	    <p><b>Mortgage</b>: <input type="text" id="inMrgt" /></p>
+	    <p><b>Down Payment</b>: <input type="text" id="inDown" /></p>
+
+	    <p><button id="btnCalculateccroi">CashOnCash ROI</button>
+	    <hr/>
+	    <p><b>CashOnCash(ROI): <span id="outCashroi" ></span></b></p> 
+	    
+	    <script>
+	    // The Code for Cash on cash ROI 
+	    // The formula: c= ((((tax + maint + ins + mrtgd)- rent) * 12)/ downpayment ) * inflation) /100
+		// @param e (float) Net Expense
+    	// @param r inflation as a percentage
+    	// @param n term in years
+	    // @param d downpayment
+
+	        function calculateCashroi(e, d, r){
+
+	          // Convert percentage to a decimal it represent inflation
+	          r = percentToDecimal(r);
+	          	          
+	          // Convert years to months
+	          //n = yearsToMonths(n);
+         
+	          var ccroi = ((e / d ) * r)/100;
+
+	          return  ccroi;
+	          //return parseFloat(ret.toFixed(2));
+	        }       	        	       
+	        
+	        function percentToDecimal(percent) {
+	          return (percent/12)/100;
+	        }
+
+	        //function yearsToMonths(year) {
+	        //  return year * 12;
+	        //}
+
+	        function postCashroi(roi) {
+	          var htmlEl = document.getElementById("outCashroi");
+
+	          htmlEl.innerText = roi + "%";
+	        }
+
+	        var btn = document.getElementById("btnCalculateccroi");        
+	        btn.onclick = function() {   
+
+	          var cost = document.getElementById("inCost").value;
+	           if (cost == "") {
+			        alert("Please enter a cost amount");
+			        return false;
+		       }
+
+		       if (cost < 0) {
+		          alert("Invalid cost");
+		          return false;
+		       }
+
+	          var rent = document.getElementById("inRent").value;
+	          var maintainance = document.getElementById("inMnt").value;
+	          var tax = document.getElementById("inTax").value;
+	          var insurance = document.getElementById("inIns").value;
+	          var inflation = document.getElementById("inInfl").value;
+	          var mortgage = document.getElementById("inMrgt").value;    
+	          var downPayment = document.getElementById("inDown").value;    
+
+	          //On Button click calculate netexpense to cashoncash ROI
+	          var expenseCashroi = ((maintainance + tax + insurance + mortgage )- rent) * 12;
+
+	          var ccroi = calculateCashroi(expenseCashroi, downPayment, inflation); 
+	          postCashroi(ccroi);	          
+
+	        };
+
+	        
+	    </script>
+
+	</body>
+</html>

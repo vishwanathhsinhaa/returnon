@@ -1,0 +1,19 @@
+<div class="dash-well">
+    <div class="gravatar-dashboard">
+        <%= image_tag avatar_url(@user), :class => 'gravatar-pos-fix gr-dash-mar-top' %>
+        <h1 class="nuvo wtxt"><%= @user.username.capitalize %></h1>
+        <h3 class="nuvo wtxt"><%= @user.motto %></h3>
+    </div>
+</div>
+
+<div class="dash-well-status">
+  <% @property.each do |property| %>
+      <div class="post">
+        <div class="tstamp">
+          <%= image_tag avatar_url_small(property.user), :class => 'gravatar' %>
+          <strong>Posted <%= time_ago_in_words(property.created_at) %> ago by <%= property.user.username %></strong>
+        </div>
+        <div class="status"><%= property.status %></div>
+      </div>
+  <% end %>
+</div>

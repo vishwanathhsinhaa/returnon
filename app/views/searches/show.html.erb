@@ -1,0 +1,20 @@
+<h1>Search Results</h1>
+
+<p><%= link_to 'Back', new_search_path, class: 'btn btn-default' %></p>
+
+<% if @search.search_properties.empty? %>
+	<p><% "No Records Found" %></p>
+<% else %>
+	<% @search.search_properties.each do |c| %>
+		<br>		
+		<div class="div">
+			<p><%= c.title %></p>
+			<p>Price: Rs.<%= c.price %></p>
+			<p>Category: <%= c.c_type %></p>
+			<p>City: <%= c.ct_type %></p>
+		</div>
+	<% end %>
+<% end %>
+
+<%#<%= render @search.properties %>
+

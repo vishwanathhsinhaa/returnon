@@ -3,19 +3,23 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  #  helper_method :property_type_options
-   #before_filter :search_query
+  	  #@username = User.find(session[:user_id]).username
 
-    # def search_query
-     #   search_params = {'s' => 'c_type desc'}
-     #   search_params = search_params.merge(params[:q]) if params[:q]
-     #   @q = Properties.search(search_params)
-    #  end
+	  rescue_from CanCan::AccessDenied do | exception |
+	  	flash[:error] = "Access Denied"
+	    redirect_to root_url
+	  end   
 
-     # def property_type_options
-     #   a = Category.all.map do |t|
-     #     [t.c_type, t.city_id]
-     #   end
-     #   [['Property type', '']].concat(a)
-   #   end
+	  before_action :configure_permitted_parameters, if: :devise_controller?  	  
+	  protected
+
+	  def configure_permitted_parameters
+	  	#devise_parameter_sanitizer.for(:sign_up) { |u| u.
+	  	#	permit( :email, :password, :password_confirmation, roles: [] ) }
+
+
+	  	devise_parameter_sanitizer.for(:sign_up) { |u| u.permit({ roles: [] }, :email, :password, :password_confirmation) }
+	  end
+
+
 end

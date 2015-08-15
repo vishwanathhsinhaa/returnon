@@ -1,25 +1,47 @@
-<%= link_to 'Add Property', new_property_path %>
+<%#<%= link_to 'Add Property', new_property_path %>
 <div class="media">
   <div class="media-body">
-    <table class="table table-hover">      
-      <tbody>
+    <table class="table table-hover" 'col-md-6 col-md-offset-3'>       
+      <tbody>        
         <% @properties.each do |property| %>
           <tr>
-            <td><%= image_tag property.image.url(:thumb) %></td>
+            <td><%= link_to (image_tag property.image.url(:thumb), :alt => "image", :width => 50, :height => 50, :title => "Click here"),  property %></td>
             <td><%= property.title %></td>            
-            <td><%= property.city.ct_type %></td>
-            <td><%= property.p_date %></td>            
-            <td><%= property.area %></td>
-            <td><%= property.price %></td>
-            <td><%= property.category.c_type %></td>            
-            <td><%= property.rent_per_month %></td>
-  
-            <td><%= link_to 'View', property %></td>
-            <%#<td><%= link_to 'Edit', edit_property_path(property) </td>
-            <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } </td>%>
+            <td><%= property.ct_type %></td>
+            <td><%= property.posting_date %></td>
+            <td>
+              <%= property.area %>
+              <%= property.a_type %>
+            </td>
+            <td>
+              <%= property.currency %>
+              <%= property.price %>
+              <%= property.c_value %>
+            </td>
+            <td><%= property.c_type %></td>            
+            <td>
+              <%= property.currency %>
+              <%= property.rent_per_month %>
+              <%= property.c_value %>
+            </td>
+            <td>
+              <%= property.user.email%>              
+            </td>
+
           </tr>
-        <% end %>
+        <% end %>   
+            
+        <%= will_paginate @properties %>
       </tbody>
+        <li><%= render 'calculate/calculation' %></li> 
+
+        <P> 
+          <% if can? :create, @property %>  
+              <%= link_to 'New properties', new_property_path %>
+          <% end %>
+        </P>
+          <%= link_to 'Home', navigate_about_path, class: 'btn btn-default' %>
+        
     </table>
   </div>
 </div>

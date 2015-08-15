@@ -1,0 +1,81 @@
+        <div class="clearBoth"></div>                                  
+            <input type="radio"  id = "croi" name="Calculator" value="Cap-Rate ROI" onclick="ViewModal()" />Cap Rate ROI            
+            <input type="radio"  id = "emi" name="Calculator" value="Mortgage-EMI" onclick="ShowModal()" />Mortgage EMI            
+            <input type="radio" id = "ccroi" name="Calculator" value="Cash-Rate ROI" onclick="SeeModal()" />Cash Rate ROI     
+        <div class="clearBoth"></div>               
+                           
+        <script>
+
+          //  var capwindow;
+            //function caproipopup(){
+            //    capwindow = window.open('home/caproi','Cap Window', 'height=550, width=550, top=50, left=1000');
+            //}
+
+            //var emiwindow;
+            //function emipopup(){
+            //    emiwindow = window.open('home/mortgage_emi','Emi Window', 'height=550, width=550, top=50, left=1000');
+            //}
+            
+            //var cashwindow;
+            //function cashroipopup(){
+            //    cashwindow = window.open('home/cashroi','Cash Window', 'height=550, width=650, top=50, left=1000');
+            //}
+
+            //function closepopup(){
+            //    mywindow.close();
+            //}
+
+            //-------Modal window code for Cap-Rate ROI-------
+            function ViewModal () {
+                var croi = document.getElementById ("croi");
+              
+                var sharedObject = {};
+                sharedObject.croi = croi.value;
+                             
+                if (window.showModalDialog) {
+                    var croiValue = showModalDialog ("home/caproi", sharedObject, "dialogWidth:500px; dialogHeight:400px; dialogLeft:400px;");
+                    return croiValue;
+                }
+                else {
+                        // for similar functionality in Opera, but it's not modal!
+                    var modal = window.open ("home/caproi", null, "width=500,height=400,left=400,modal=yes,alwaysRaised=yes", null);
+                    modal.dialogArguments = sharedObject;
+                }
+            } 
+                 
+            //-------Modal window code for mortgage-emi--------
+            function ShowModal () {
+                var emi = document.getElementById ("emi");
+              
+                var sharedObject = {};
+                sharedObject.emi = emi.value;              
+                
+                if (window.showModalDialog) {
+                    var retValue = showModalDialog ("home/mortgage_emi", sharedObject, "dialogWidth:500px; dialogHeight:400px; dialogLeft:400px;");
+                    return retvalue;
+                }
+                else {
+                        // for similar functionality in Opera, but it's not modal!
+                    var modal = window.open ("home/mortgage_emi", null, "width=500,height=400,left=400,modal=yes,alwaysRaised=yes", null);
+                    modal.dialogArguments = sharedObject;
+                }
+            } 
+            
+            //--------Modal window code for Cash-On-Cash ROI--------
+            function SeeModal () {
+                var ccroi = document.getElementById ("ccroi");
+              
+                var sharedObject = {};
+                sharedObject.ccroi = ccroi.value;           
+                
+                if (window.showModalDialog) {
+                    var ccroiValue = showModalDialog ("home/cashroi", sharedObject, "dialogWidth:500px; dialogHeight:500px; dialogLeft:400px;");
+                    return ccroiValue;
+                }
+                else {
+                        // for similar functionality in Opera, but it's not modal!
+                    var modal = window.open ("home/cashroi", null, "width=500,height=500,left=400,modal=yes,alwaysRaised=yes", null);
+                    modal.dialogArguments = sharedObject;
+                }
+            } 
+        </script>

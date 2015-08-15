@@ -1,0 +1,21 @@
+<h1>Advanced Search</h1>
+
+<%= form_for @search do |s| %>
+
+	<div class="field">
+		<p><%= s.label :keywords %> - <%= s.text_field :keywords %></p>
+
+		<p><%= s.label :c_type %> - <%= s.collection_select :c_type, Property.order(:c_type), :id, :c_type,  :include_blank => true %></p>
+
+		<p><%= s.label :ct_type %> - <%= s.collection_select :ct_type, Property.order(:ct_type), :id, :ct_type,  :include_blank => true %></p>
+
+		<p><%= s.label :min_price, "Min Price" %> - <%= s.text_field :min_price, size: 10 %></p>
+		<p><%= s.label :min_price, "Max Price" %> - <%= s.text_field :max_price, size: 10 %></p>
+
+		<p><%= s.submit "Search",  class: 'btn btn-mini' %></p>
+	</div>
+
+	
+<% end %>
+
+<p><%= link_to 'Back', properties_path, class: 'btn btn-default' %></p>

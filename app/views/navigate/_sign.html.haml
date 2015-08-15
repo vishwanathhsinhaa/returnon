@@ -1,0 +1,86 @@
+!!! 5
+%html
+%head
+    %title ROIP
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+%body
+    %nav.navbar-default
+        .container
+            .navbar-brand= link_to "Property", root_path
+
+            - if user_signed_in?
+                %ul.nav.navbar-nav.navbar-right
+                    %li= link_to "New Property", new_property_path
+                    %li= link_to "Profile", edit_user_registration_path
+                    %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+            - else
+                %ul.nav.navbar-nav.navbar-right
+                    %li= link_to "Sign Up", new_user_registration_path
+                    %li= link_to "Sign In", new_user_session_path
+            
+            %ul.nav.navbar-navbar-left
+                = render 'navigate/form_search'
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

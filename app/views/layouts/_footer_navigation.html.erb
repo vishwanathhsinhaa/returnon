@@ -1,22 +1,24 @@
 <footer class="footer" id="Return-footer">
   <div class="navbar navbar-default navbar-flexible-bottom">
-    <div class="container">
-      <div class="navbar-footer">
+    <%#<div class="container">%>
+
+      <nav class="navbar navbar-inverse">
         <div class="container">     
-            <ul class="nav nav-tabs">
-              <li><%= link_to "About", navigate_about_path%></li>
+            <ul class="nav navbar-nav pull-right">
+              <li><%= link_to "About", home_index_path%></li>
               <li><%= link_to "Help", navigate_help_path %></li>
               <li><%= link_to "Terms & Conditions", navigate_terms_path %></li>
               <li><%= link_to "Privacy Policy", navigate_privacy_path %></li>
               <li><%= link_to "Contact", navigate_contact_path %></li> 
             </ul>
         </div>
-        <div class="row">
-          <div class ="footer-close">
-            S-Corp&copy; 2015. All rights reserved. 
-          </div>
-        </div>
+      </nav>
+      <div class ="footer-close">
+        N-Corp&copy; 2015. All rights reserved. 
       </div>
-    </div>
+        
+      
+
+    <%#</div>%>
   </div>
 </footer>

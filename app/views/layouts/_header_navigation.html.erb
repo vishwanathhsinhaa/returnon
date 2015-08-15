@@ -10,34 +10,72 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
-    <nav class="navbar navbar-inverse">
-      <div class="container">
-        
-         <ul class="title-area">
-           <%# <li class="name"> %>
-           <%#  <%= link_to image_tag("logo.png", :class => "logo"), root_path %>
-                <%#&nbsp;<%= link_to "ROIP", root_path %>
-            <%# </li> %>          
-        </ul>
-
-        <ul class="nav navbar-nav">
-          <li><%= render 'navigate/form_search' %></li>
-          <li><%= link_to "Property", properties_path %></li>
-          <li><%= link_to "Location", locations_path %></li>
-          <li><%= link_to "State", states_path %></li>
-          <li><%= link_to "City", cities_path %></li>
-          <li><%= link_to "Category", categories_path %></li>
-          <li><%= link_to "Type", types_path %></li>
-          <li><%= link_to "Ownership", ownerships_path %></li>
-          <li><%= link_to "Contact", contacts_path %></li>
-        </ul>
-      </div>
-
-      <%#<%= render 'layouts/search_bar' %>
-    </nav>
-
-
     
+    
+      <nav class="navbar navbar-inverse">
+        <div class="container">          
+          <li class="name">
+               <%#<%= link_to image_tag("/assets/images/nagoya.png", :class => "logo"), root_path %>
+            <%= link_to image_tag("app/assets/images/nagoya.png", :alt => "nagoya" , class: "navbar-brand navbar-brand-img"),  root_path %>
+                <%#  &nbsp;<%= link_to "ROIP", root_path %>
+          </li> %>                  
+          <ul class="nav navbar-nav pull-left">
+            <%#<li><%= render 'navigate/form_search' </li>%>
+            <li><%= link_to "Home", root_path%></li>
+            <li>
+               
+                    <%= link_to "Property", properties_path %>
+               
+            </li>
+          </ul>
+          <ul class="nav navbar-nav pull-right">  
+            <% if user_signed_in? %>
+           
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Logged In as: <%= current_user.email %>
+                <b class="caret"></b>
+              </a>
+                <ul class="dropdown-menu">                                
+                  
+                  <li><%= link_to "Settings",  edit_user_registration_path %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Logged Out", destroy_user_session_path, method: :delete %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account:
+                <b class="caret"></b>
+              </a>
+                <ul class="dropdown-menu">  
+                  <li><%= link_to "Register", new_user_registration_path %></li>
+                  <li><%= link_to "Log In", new_user_session_path %></li>                
+                </ul>
+            <% end %>                
+          </ul>          
+        </div>        
+      </nav>        
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

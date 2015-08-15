@@ -1,97 +1,122 @@
 <%#<p id="notice"><%= notice </p> %>
+<%= flash[:error] %>
 
-<%= image_tag @property.image.url(:medium) %> | <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@property.latitude}%2C#{@property.longitude}" %>
+<div align="center">
+  
+  <%= image_tag @property.image.url(:medium) %> | <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@property.latitude}%2C#{@property.longitude}" %>
+  
+  <div align="left">
+      <p>
+        <strong>Property Title:</strong>
+        <%= @property.title %>
+      </p>
 
-<p>
-  <strong>Property Title:</strong>
-  <%= @property.title %>
-</p>
+      <p>
+        <strong>Category:</strong>
+        <%= @property.c_type %>
+      </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @property.category.c_type %>
-</p>
+      <p>
+        <strong>Property type:</strong>
+        <%= @property.p_type %>
+      </p> 
+      <p>
+        <strong>Posting Date:</strong>
+        <%= @property.posting_date %>
+      </p>
+      <p>
 
-<p>
-  <strong>Property type:</strong>
-  <%= @property.p_type %>
-</p> 
-<p>
-  <strong>Posting Date:</strong>
-  <%= @property.p_date %>
-</p>
-<p>
+      <p>
+        <strong>Property Ownership:</strong>
+        <%= @property.o_type %>
+      </p>
 
-<p>
-  <strong>Property Ownership:</strong>
-  <%= @property.ownership.o_type %>
-</p>
+      <p>
+        <strong>Type:</strong>
+        <%= @property.u_type %>
+      </p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @property.type.u_type %>
-</p>
+      <p>
+        <strong>Property Description:</strong>
+        <%= @property.desc %>
+      </p>
 
-<p>
-  <strong>Property Description:</strong>
-  <%= @property.desc %>
-</p>
+      <p>
+        <strong>Property Address:</strong>
+        <%= @property.address %>
+      </p>
 
-<p>
-  <strong>Property Address:</strong>
-  <%= @property.address %>
-</p>
+      <p>
+        <strong>State:</strong>
+        <%= @property.s_type %>
+      </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @property.state.s_type %>
-</p>
+      <p>
+        <strong>City:</strong>
+        <%= @property.ct_type %>
+      </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @property.city.ct_type %>
-</p>
+      <p>
+        <strong>Pin Code:</strong>
+        <%= @property.pin_code %>
+      </p>
 
-<p>
-  <strong>Pin Code:</strong>
-  <%= @property.p_code %>
-</p>
+      <p>
+        <strong>Area:</strong>
+        <%= @property.area %>
+        <%= @property.a_type %>
+      </p>
+      <p>
+        <strong>Property Price:</strong>
+        <%= @property.currency %>
+        <%= @property.price %>
+        <%= @property.c_value %>
+      </p>
+      <p>
+        <strong>Current Tenant:</strong>
+        <%= @property.tenant_name %>
+      </p>
+      <p>
+        <strong>Lease Start Date:</strong>
+        <%= @property.lease_commence_date %>
+      </p>
+      <p>
+        <strong>Lease Expiry Date:</strong>
+        <%= @property.lease_expiry_date  %>
+      </p>
+      <p>
+        <strong>Lease Tenure:</strong>
+        <%= @property.lease_tenure %>
+        <%= @property.yrs %>
+      </p>
+      <p>
+        <strong>Rent Per Month:</strong>
+        <%= @property.currency %>
+        <%= @property.rent_per_month %>
+        <%= @property.c_value %>
+      </p>
+      <p>
+        <strong>Return of Investment:</strong>
+        <%= @property.roi %>
+      </p>
+      <p>
+        <strong>Lockin Period:</strong>
+        <%= @property.lockin_period %>
+        <%= @property.yrs %>
+      </p>      
+      <p>
+        <% if @property.user == current_user %>
+          <% if can? :update, @property %>
+            <%= link_to 'Edit', edit_property_path(@property), class: 'btn btn-success' %> 
+          <% end %>
+          <% if can? :destroy, @property, class: 'btn btn-default' %>
+            <%= link_to 'Destroy', @property , class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        <% end -%>
 
-<p>
-  <strong>Area:</strong>
-  <%= @property.area %>
-</p>
-<p>
-  <strong>Property Price:</strong>
-  <%= @property.price %>
-</p>
-<p>
-  <strong>Current Tenant:</strong>
-  <%= @property.tenant_name %>
-</p>
-<p>
-  <strong>Lease Start Date:</strong>
-  <%= @property.lease_commence_date %>
-</p>
-<p>
-  <strong>Lease Expiry Date:</strong>
-  <%= @property.lease_expiry_date  %>
-</p>
-<p>
-  <strong>Lease Tenure:</strong>
-  <%= @property.lease_tenure %>
-</p>
-<p>
-  <strong>Rent Per Month:</strong>
-  <%= @property.rent_per_month %>
-</p>
-<p>
-  <strong>Return of Investment:</strong>
-  <%= @property.roi %>
-</p>
-<p>
-  <strong>Lockin Period:</strong>
-  <%= @property.lockin_period %>
-</p>
+          
 
-<%= link_to 'Edit', edit_property_path(@property) %> | <%= link_to 'Back', properties_path %>
+        <%= link_to 'Back', properties_path, class: 'btn btn-default' %>
+      </p>
+    </div>
+</div>

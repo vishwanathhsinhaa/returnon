@@ -1,167 +1,300 @@
-<%= form_for @property, html: { multipart: true } do |f| %>
-  <% if @property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
 
-      <ul>
-      <% @property.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_for @property, html: { multipart: true } do |f| %>
+    <% if @property.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+        <ul>
+        <% @property.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= f.label :title, "Property Title" %>
+      <%= f.text_field :title %>    
+    </p>
+
+    <p>
+      <%= f.label :p_type, "Property Type" %>
+      <%= f.select(:p_type, options_for_select([['Select Any', 'Select Any'],
+                              ['Commercial', 'Commercial'], 
+                              ['Residential', 'Residential'], 
+                              ['Industrial','Industrial'],
+                              ['Agricultural', 'Agricultural']
+      ])) %>
+    </p>
+
+    <p>
+      <%= f.label :c_type, "Category" %>
+      <%= f.select(:c_type, options_for_select([['Select Any', 'Select Any'], 
+                                                  ['ATM', 'ATM'],
+                                                  ['Bank','Bank'],
+                                                  ['Business Center','Business Center'],
+                                                  ['MNC Company','MNC Company'],
+                                                  ['Multiplex','Multiplex'],
+                                                  ['Motel','Motel'],                                                  
+                                                  ['Insurance Company','Insurance Company'],
+                                                  ['Institute','Institute'],
+                                                  ['Hospital','Hospital'],
+                                                  ['Hotel','Hotel'],
+                                                  ['Hotel Land','Hotel Land'],
+                                                  ['School','School'],
+                                                  ['Play School','Play School'],
+                                                  ['Resort','Resort'],
+                                                  ['Restaurant/Bar','Restaurant/Bar'],
+                                                  ['Retail Showroom/Shop','Retail Showroom/Shop'],
+                                                  ['Kiosk In Shopping Mall','Kiosk In Shopping Mall'],
+                                                  ['Agriculture Land','Agriculture Land'],
+                                                  ['Automobile Workshop','Automobile Workshop'],
+                                                  ['Guest House','Guest House'],
+                                                  ['Industrial Building','Industrial Building'],
+                                                  ['Industrial Shed','Industrial Shed'],
+                                                  ['Corporate Hub','Corporate Hub'],
+                                                  ['Spa & Saloon','Spa & Saloon'],
+                                                  ['Shop','Shop'],
+                                                  ['Theater','Theater'],
+                                                  ['Warehouse','Warehouse'],
+                                                  ['Mango Orchard','Mango Orchard'],
+                                                  ['Fishery','Fishery']
+
+
+        ])) %>    
+    </p>
+
+    
+    <p>
+      <%= f.label :o_type, "Property Ownership" %>    
+      <%= f.select(:o_type, options_for_select([['Select Any', 'Select Any'], 
+                                                  ['Single Owner', 'Single Owner'], 
+                                                  ['Family Owned', 'Family Owned'], 
+                                                  ['Company Owned','Company Owned'],
+                                                  ['Govt. Owned','Govt. Owned']
+      ])) %>    
+    </p>
+
+    <p>
+      <%= f.label :u_type, "Type" %>
+      <%= f.select(:u_type, options_for_select([['Select Any', 'Select Any'],
+                              ['Leasehold', 'Leasehold'], 
+                              ['Freehold', 'Freehold'], 
+                              ['Power Of Attorney','Power Of Attorney'],                          
+                              ['Mutated','Mutated']
+      ])) %>
+    </p>
+
+    <p>
+      <%= f.label :posting_date, "Posting date" %>
+      <%= f.date_select :posting_date %>
+    </div>
+
+    <p>
+      <%= f.label :desc, "Property Description" %>
+      <%= f.text_area :desc %>
+    </p>
+
+    <p>
+      <%= f.label :image, "Upload property Photos" %>
+      <%= f.file_field :image %>
+    </p>
+
+    <p>
+      <%= f.label :address, "Property Address" %>
+      <%= f.text_field :address %>
+    </p>
+
+    <p>
+      <%= f.label :s_type, "State" %>
+      <%= f.select(:s_type, options_for_select([['State', 'State'], 
+                                                  ['Andhra Pradesh', 'Andhra Pradesh'],
+                                                  ['Arunachal Pradesh','Arunachal Pradesh'],
+                                                  ['Assam','Assam'],
+                                                  ['Bihar','Bihar'],
+                                                  ['Chattisgarh','Chattisgarh'],
+                                                  ['Delhi','Delhi'],
+                                                  ['Goa','Goa'],
+                                                  ['Gujrat','Gujrat'],
+                                                  ['Himachal Pradesh','Himachal Pradesh'],
+                                                  ['Haryana','Haryana'],
+                                                  ['Jammu & Kashmir','Jammu & Kashmir'],
+                                                  ['Jharkhand','Jharkhand'],
+                                                  ['Karnataka','Karnataka'],
+                                                  ['Kerala','Kerala'],
+                                                  ['Madhya Pradesh','Madhya Pradesh'],
+                                                  ['Maharastra','Maharastra'],
+                                                  ['Manipur','Manipur'],                          
+                                                  ['Mizoram','Mizoram'],
+                                                  ['Nagaland','Nagaland'],
+                                                  ['Odissa','Odissa'],
+                                                  ['Punjab','Punjab'],
+                                                  ['Rajasthan','Rajasthan'],
+                                                  ['Sikkim','Sikkim'],
+                                                  ['Tamil Nadu','Tamil Nadu'],
+                                                  ['Telangana','Telangana'],
+                                                  ['Tripura','Tripura'],
+                                                  ['Uttar Pradesh','Uttar Pradesh'],
+                                                  ['Uttarakhand','Uttarakhand'],
+                                                  ['West Bengal','West Bengal'],
+                                                  ['-----------','-----------'],
+                                                  ['Union Territory','Union Territory'],
+                                                  ['Chandigarh','Chandigarh'],
+                                                  ['Dadar Nagar Haveli','Dadar Nagar Haveli'],
+                                                  ['Daman & DIU','Daman & DIU'],
+                                                  ['Lakshwadweep','Lakshwadweep'],
+                                                  ['Puducherry','Puducherry'],                      
+                                                ]))
+        %>           
+    </p>
+
+    <p>
+      <%= f.label :ct_type, "City" %>    
+      <%= f.select(:ct_type, options_for_select([['City', 'City'], 
+                                                  ['Metro', 'Metro'],
+                                                  ['New Delhi','New Delhi'],
+                                                  ['Mumbai','Mumbai'],
+                                                  ['Kolkata','Kolkata'],
+                                                  ['Chennai','Chennai'],
+                                                  ['Delhi','Delhi'],
+                                                  ['Bangalore','Bangalore'],
+                                                  ['Hyderabad','Hyderabad'],
+                                                  ['Pune','Pune'],
+                                                  ['Gurgoan','Gurgoan'],
+                                                  ['Noida','Noida'],
+                                                  ['-----------','-----------'],
+                                                  ['Capital City', 'Capital City'],
+                                                  ['Ahmedabad','Ahmedabad'],
+                                                  ['Aizwal','Aizwal'],
+                                                  ['Bangalore','Bangalore'],
+                                                  ['Bhubeneswar','Bhubeneswar'],
+                                                  ['Bhopal','Bhopal'],
+                                                  ['Chandigarh','Chandigarh'],
+                                                  ['Chennai','Chennai'],
+                                                  ['Delhi','Delhi'],
+                                                  ['Dehradun','Dehradun'],
+                                                  ['Gangtok','Gangtok'],
+                                                  ['Guwahati','Guwahati'],
+                                                  ['Hyderabad','Hyderabad'],
+                                                  ['Imphal','Imphal'],
+                                                  ['Itanagar','Itanagar'],
+                                                  ['Jaipur','Jaipur'],
+                                                  ['Kolkata','Kolkata'],
+                                                  ['Kohima','Kohima'],
+                                                  ['Lukhnow','Lukhnow'],
+                                                  ['Mumbai','Mumbai'],
+                                                  ['Patna','Patna'],                          
+                                                  ['Panaji','Panaji'],
+                                                  ['Raipur','Raipur'],
+                                                  ['Ranchi','Ranchi'],
+                                                  ['Shimla','Shimla'],
+                                                  ['Srinagar','Srinagar'],
+                                                  ['Tiruvrathpuram','Tiruvrathpuram'],
+                                                  ['Vijaywada','Vijaywada'],
+                                                  ['-----------','-----------'],
+                                                  ['Other City', 'Other City'],
+                                                  ['Ambravati', 'Ambravati'],
+                                                  ['Amritsar', 'Amritsar'],
+                                                  ['Kanpur', 'Kanpur'],
+                                                  ['Allahabad', 'Allahabad']
+
+        ])) %>       
+    </p>
+
+    <p>
+      <%= f.label :pin_code, "Pin Code" %>
+      <%= f.text_field :pin_code %>
+    </p>
+
+    <p>
+      <%= f.label :area, "Area" %>
+      <%= f.text_field :area %>
+      <%= f.select(:a_type, options_for_select([['Select Any', 'Select Any'],
+                              ['Sq.Ft.', 'Sq.Ft.'], 
+                              ['Sq.Yd.', 'Sq.Yd.'], 
+                              ['Acre','Acre'],
+                              ['Hectare', 'Hectare']
+      ])) %>
+    </p>
+
+    <p>
+      <%= f.label :price, "Property Price" %>
+      <%= f.select(:currency, options_for_select([['Select Currency', 'Select Currency'],
+                                                    ['Rs.', 'Rs.'],
+                                                    ['$', '$'],
+                                                    ['Pound','Pound'],
+                                                    ['Euro', 'Euro']
+      ])) %>
+      <%= f.text_field :price %>
+      <%= f.select(:c_value, options_for_select([['Select Value', 'Select Value'],
+                                                    ['Thousand', 'Thousand'],
+                                                    ['Lac', 'Lac'],
+                                                    ['Cr','Cr'],
+                                                    ['Million', 'Million'],
+                                                    ['Billion', 'Billion']
+      ])) %>
+    </p>
+
+    <p>
+      <%= f.label :tenant_name, "Current Tenant" %>
+      <%= f.text_field :tenant_name %>
+    </p>
+
+    <p>
+      <%= f.label :lease_commence_date, "Lease Start date" %>
+      <%= f.date_select :lease_commence_date %>    
+    </p>
+
+
+    <p>
+      <%= f.label :lease_expiry_date, "Lease Expiry date" %>
+      <%= f.date_select :lease_expiry_date %>
+    </p>
+
+    <p>
+      <%= f.label :lease_tenure, "Lease Tenure" %>
+      <%= f.text_field :lease_tenure %>
+      <%= f.select(:yrs, options_for_select([['Select Any', 'Select Any'],
+                                              ['Month', 'Month'], 
+                                              ['years', 'years']
+      ])) %>   
+    </p>
+
+    <p>
+        <%= f.label :rent_per_month, "Rent Per Month" %>
+        <%= f.select(:currency, options_for_select([['Select Currency', 'Select Currency'],
+                                                      ['Rs.', 'Rs.'],
+                                                      ['$', '$'],
+                                                      ['Pound','Pound'],
+                                                      ['Euro', 'Euro']
+        ])) %>
+        <%= f.text_field :rent_per_month %>
+        <%= f.select(:c_value, options_for_select([['Select Value', 'Select Value'],
+                                                    ['Thousand', 'Thousand'],
+                                                    ['Lac', 'Lac'],
+                                                    ['Cr','Cr'],
+                                                    ['Million', 'Million'],
+                                                    ['Billion', 'Billion']
+        ])) %> 
+    </p>
+
+    <p>
+      <%= f.label :roi, "Return of Investment(%)" %>
+      <%= f.text_field :roi %>
+    </p>
+
+    <p>
+      <%= f.label :lockin_period, "Lockin Period" %>
+      <%= f.text_field :lockin_period %>
+      <%= f.select(:yrs, options_for_select([['Select Any', 'Select Any'],
+                                              ['Month', 'Month'], 
+                                              ['years', 'years']
+      ])) %>     
+    </p>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label "Property Title", class: 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title %>
-    </div>
-  </div>
 
-  <div class="control-group">
-    <%= f.label "Property Type", class: 'control-label' %>
-    <div class="controls">
-      <%= f.select(:p_type, options_for_select([['Select Any', 'Select Any'], ['Commercial', 'Commercial'], ['Residential', 'Residential'], ['Industrial','Industrial'],['Agricultural', 'Agricultural']])) %>
-    </div>
-  </div>
-
-
-  <div class="control-group">
-    <%= f.label "Category", class: 'control-label' %><br>
-    <div class="controls">
-      <%= collection_select( :property, :category_id, Category.all, :id, :c_type, {}, { :multiple => false }) %>
-    </div>
-  </div>
-
-  
-  <div class="control-group">
-    <%= f.label "Property Ownership", class: 'control-label' %><br>
-    <div class="controls">
-      <%= collection_select( :property, :ownership_id, Ownership.all, :id, :o_type, {}, { :multiple => false }) %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Type", class: 'control-label' %><br>
-    <div class="controls">
-      <%= collection_select( :property, :type_id, Type.all, :id, :u_type, {}, { :multiple => false }) %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Posting date", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.date_select :p_date %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Property Description", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_area :desc %>
-    </div>
-  </div>
-
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Property Address", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :address %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "State", class: 'control-label' %><br>
-    <div class="controls">
-      <%= collection_select( :property, :state_id, State.all, :id, :s_type, {}, { :multiple => false }) %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "City", class: 'control-label' %><br>
-    <div class="controls">
-      <%= collection_select( :property, :city_id, City.all, :id, :ct_type, {}, { :multiple => false }) %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Pin Code", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :p_code %>
-    </div>
-  </div>
-
-
-  <div class="control-group">
-    <%= f.label "Area", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :area %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Property Price", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :price %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Current Tenant", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :tenant_name %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Lease Start date", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.date_select :lease_commence_date %>
-    </div>
-  </div>
-
-
-  <div class="control-group">
-    <%= f.label "Lease Expiry date", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.date_select :lease_expiry_date %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Lease Tenure", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :lease_tenure %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Rent Per Month", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :rent_per_month %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Return of Investment", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :roi %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label "Lockin Period", class: 'control-label' %><br>
-    <div class="controls">
-      <%= f.text_field :lockin_period %>
-    </div>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

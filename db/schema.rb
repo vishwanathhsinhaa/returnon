@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720063810) do
+ActiveRecord::Schema.define(version: 20150815140943) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "lane1"
     t.string   "lane2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "agents", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +46,21 @@ ActiveRecord::Schema.define(version: 20150720063810) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dashboards", force: :cascade do |t|
+    t.string   "status"
+    t.string   "author"
+    t.string   "username"
+    t.integer  "user_id"
+    t.string   "user"
+    t.string   "bio"
+    t.string   "website"
+    t.string   "skype"
+    t.date     "dob"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string   "address"
     t.string   "state"
@@ -57,6 +77,11 @@ ActiveRecord::Schema.define(version: 20150720063810) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "owners", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ownerships", force: :cascade do |t|
     t.string   "o_type"
     t.datetime "created_at", null: false
@@ -69,33 +94,57 @@ ActiveRecord::Schema.define(version: 20150720063810) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "area"
-    t.string   "price"
+    t.float    "price"
+    t.integer  "pin_code"
     t.string   "tenant_name"
     t.date     "lease_commence_date"
     t.date     "lease_expiry_date"
     t.string   "lease_tenure"
-    t.string   "rent_per_month"
+    t.float    "rent_per_month"
     t.string   "roi"
     t.string   "lockin_period"
-    t.integer  "category_id"
-    t.integer  "property_type_id"
-    t.integer  "ownership_id"
-    t.integer  "type_id"
-    t.integer  "state_id"
-    t.integer  "city_id"
+    t.string   "currency"
+    t.date     "posting_date"
+    t.string   "yrs"
+    t.string   "desc"
+    t.string   "a_type"
+    t.string   "o_type"
+    t.string   "p_type"
+    t.string   "u_type"
+    t.string   "ct_type"
+    t.string   "c_type"
+    t.string   "s_type"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "c_type"
-    t.string   "p_type"
-    t.string   "o_type"
-    t.string   "desc"
-    t.string   "u_type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "p_code"
-    t.date     "p_date"
+    t.string   "c_value"
+    t.integer  "user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_suggestions", force: :cascade do |t|
+    t.string   "term"
+    t.integer  "popularity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "c_type"
+    t.string   "ct_type"
+    t.decimal  "min_price"
+    t.decimal  "max_price"
   end
 
   create_table "states", force: :cascade do |t|
@@ -110,5 +159,31 @@ ActiveRecord::Schema.define(version: 20150720063810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.boolean  "admin"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.integer  "phone_number"
+    t.boolean  "agent"
+    t.boolean  "owner"
+    t.string   "role"
+    t.integer  "roles_mask"
+    t.string   "username"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

@@ -6,22 +6,26 @@ class CreateProperties < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.string :area
-      t.string :price
+      t.float :price
+      t.integer :pin_code
       t.string :tenant_name
       t.date :lease_commence_date
       t.date :lease_expiry_date
       t.string :lease_tenure
-      t.string :rent_per_month
+      t.float :rent_per_month
       t.string :roi
       t.string :lockin_period
-      
-
-      t.integer  :category_id
-      t.integer  :property_type_id
-      t.integer  :ownership_id
-      t.integer  :type_id
-      t.integer :state_id
-      t.integer :city_id
+      t.string :currency
+      t.date :posting_date
+      t.string :yrs
+      t.string :desc
+      t.string :a_type
+      t.string :o_type
+      t.string :p_type
+      t.string :u_type
+      t.string :ct_type
+      t.string :c_type
+      t.string :s_type 
             
       t.timestamps null: false
     end

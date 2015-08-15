@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cap-Rate ROI</title>
+  </head>
+  <body>
+  <h1>CapRate RoI Calculator</h1>   
+
+      <p><b>Property Cost</b>: <input type="text" id="inCost" /></p>
+      <p><b>Rent</b>: <input type="text" id="inRent" /></p>
+      <p><b>Mantainance</b>: <input type="text" id="inMnt" /></p>
+      <p><b>Tax on Property</b>: <input type="text" id="inTax" /></p>
+      <p><b>Insurance on Property</b>: <input type="text" id="inIns" /></p>
+      <p><b>Annual Inflation</b>: <input type="text" id="inInfl" /></p>
+      <p><button id="btnCalculatecroi">CapRate ROI</button>
+      </hr>
+      <p><b>CapRate(ROI): <span id="outCaproi" ></span></b></p> 
+
+      <script>
+        // The Code for Cap Rate ROI 
+        // The formula: c= (((tax + maint + ins )- rent) * 12)/ cost ) * inflation 
+        // @param e (float) Net Expense
+        // @param r inflation as a percentage
+        // @param n term in years
+
+          function calculateCaproi(e, c, r){
+
+            // Convert percentage to a decimal represent inflation
+            r = percentToDecimal(r);
+            
+            // Convert years to months
+            //n = yearsToMonths(n);
+            
+            var croi = ((e / c ) * r)/100;          
+            return croi;
+            //return parseFloat(croi.toFixed(2));
+          }                     
+
+          function percentToDecimal(percent) {
+            return (percent/12)/100;
+          }
+
+          //function yearsToMonths(year) {
+          //  return year * 12;
+         // }
+
+          function postCaproi(roi) {
+            var htmlEl = document.getElementById("outCaproi");
+
+            htmlEl.innerText = roi + "%";
+          }
+
+          var btn = document.getElementById("btnCalculatecroi");        
+          btn.onclick = function() {          
+            var cost = document.getElementById("inCost").value;
+
+              if (cost == "") {
+                 alert("Please enter a cost amount");
+                 return false;
+               }
+
+              if (cost < 0) {
+                alert("Invalid cost");
+                return false;
+              }
+
+            var rent = document.getElementById("inRent").value;
+            var maintainance = document.getElementById("inMnt").value;
+            var tax = document.getElementById("inTax").value;
+            var insurance = document.getElementById("inIns").value;
+            var inflation = document.getElementById("inInfl").value;
+            
+            //On Button click calculate mortage Assign value of the attributes
+            var expenseCaproi = ((maintainance + tax + insurance) - rent) * 12;
+
+            var croi = calculateCaproi(expenseCaproi, cost, inflation); 
+
+            postCaproi(croi);
+
+          };
+      </script>
+  </body>
+</html>

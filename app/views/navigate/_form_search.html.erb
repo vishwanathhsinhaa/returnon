@@ -1,5 +1,18 @@
-<%= form_tag properties_path, :method => :get,  class: "navbar-form navbar-right", role: "search" do %>
-		<%= text_field_tag :search, params[:search], :placeholder => "Search Property...."  %>
-		<%= submit_tag "Q", id: "search_submit", class: "header_search_icon" %>
-<% end %>
+<div align="center">
 
+	<%= form_tag properties_path, :method => :get, :class => 'form_search'  do %>		
+		<div class="input-append">
+			<%= text_field_tag :search, params[:search], placeholder: "Search by title or category or city", size: 50 %>
+
+			<%= collection_select :c_type, :id, Property.all.order(:c_type), :id, :c_type,  :include_blank => true  %>
+			<%= collection_select :ct_type, :id, Property.all.order(:ct_type), :id, :ct_type,  :include_blank => true  %>
+			
+			<%= submit_tag "Q", id: "search_submit", class: "header_search_icon" , size: 20 %>
+		</div>
+	<% end %>
+	<%= link_to "Advanced Search", new_search_path, class: 'btn btn-default' %>
+</div>
+
+
+
+	
