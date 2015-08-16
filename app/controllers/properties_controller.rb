@@ -24,7 +24,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1
   def show
-  set_property
+    set_property
   #  @properties = set_property.properties
   end
 
